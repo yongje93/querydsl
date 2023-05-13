@@ -5,6 +5,8 @@ import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.annotation.PostConstruct;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,12 +14,11 @@ import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.querydsl.SimpleEntityPathResolver;
-import org.springframework.data.repository.support.PageableExecutionUtils;
+
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.function.Function;
 
@@ -79,7 +80,7 @@ public abstract class Querydsl4RepositorySupport {
 
     protected <T> Page<T> applyPagination(Pageable pageable, Function<JPAQueryFactory, JPAQuery> contentQuery) {
         JPAQuery jpaQuery = contentQuery.apply(getQueryFactory());
-        List<T> content = getQuerydsl().applyPagination(pageable,jpaQuery).fetch();
+        List<T> content = getQuerydsl().applyPagination(pageable, jpaQuery).fetch();
         return PageableExecutionUtils.getPage(content, pageable, jpaQuery::fetchCount);
     }
 

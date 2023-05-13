@@ -1,8 +1,8 @@
 package study.querydsl.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,8 @@ import java.util.List;
 @ToString(of = {"id", "name"})
 public class Team {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "team_id")
     private Long id;
     private String name;
