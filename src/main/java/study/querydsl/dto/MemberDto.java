@@ -11,7 +11,7 @@ public class MemberDto {
     private String username;
     private int age;
 
-    @QueryProjection
+    @QueryProjection    // DTO의 Q파일 생성
     public MemberDto(String username, int age) {
         this.username = username;
         this.age = age;

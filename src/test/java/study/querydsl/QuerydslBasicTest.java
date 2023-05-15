@@ -468,8 +468,8 @@ public class QuerydslBasicTest {
 
         List<UserDto> result = queryFactory
                 .select(Projections.fields(UserDto.class,
-                        member.username.as("name"),
-                        ExpressionUtils.as(JPAExpressions
+                        member.username.as("name"), // 필드에 별칭 적용
+                        ExpressionUtils.as(JPAExpressions   // 필드나, 서브 쿼리에 별칭 적용
                                 .select(memberSub.age.max())
                                 .from(memberSub), "age")
                 ))
