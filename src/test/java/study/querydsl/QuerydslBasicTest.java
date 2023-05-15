@@ -517,11 +517,12 @@ public class QuerydslBasicTest {
     }
 
     private List<Member> searchMember1(String usernameCond, Integer ageCond) {
-
         BooleanBuilder builder = new BooleanBuilder();
+
         if (usernameCond != null) {
             builder.and(member.username.eq(usernameCond));
         }
+
         if (ageCond != null) {
             builder.and(member.age.eq(ageCond));
         }
@@ -545,6 +546,7 @@ public class QuerydslBasicTest {
         return queryFactory
                 .selectFrom(member)
                 .where(usernameEq(usernameCond), ageEq(ageCond))
+//                .where(allEq(usernameCond, ageCond))
                 .fetch();
     }
 
