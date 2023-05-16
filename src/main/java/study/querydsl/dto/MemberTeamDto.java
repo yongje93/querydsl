@@ -3,6 +3,9 @@ package study.querydsl.dto;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 
+/**
+ * 조회 최적화용 DTO
+ */
 @Data
 public class MemberTeamDto {
     private Long memberId;
