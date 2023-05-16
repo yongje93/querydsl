@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import study.querydsl.dto.MemberDto;
 import study.querydsl.dto.QMemberDto;
@@ -563,6 +564,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
+//    @Commit
     public void bulkUpdate() {
         // member1, member2 -> 비회원
         long count = queryFactory
@@ -588,7 +590,7 @@ public class QuerydslBasicTest {
     public void bulkAdd() {
         long count = queryFactory
                 .update(member)
-                .set(member.age, member.age.multiply(2))
+                .set(member.age, member.age.add(1))
                 .execute();
     }
 
@@ -619,8 +621,9 @@ public class QuerydslBasicTest {
         List<String> result = queryFactory
                 .select(member.username)
                 .from(member)
-                .where(member.username.eq(Expressions.stringTemplate("function('lower', {0})",
-                        member.username)))
+//                .where(member.username.eq(Expressions.stringTemplate("function('lower', {0})",
+//                        member.username)))
+                .where(member.username.eq(member.username.lower()))
                 .fetch();
 
         for (String s : result) {
