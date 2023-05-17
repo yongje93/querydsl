@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import study.querydsl.entity.Member;
 import study.querydsl.entity.Team;
 
-
+/**
+ * 샘플 데이터 추가
+ */
 @Profile("local")
 @Component
 @RequiredArgsConstructor

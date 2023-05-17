@@ -12,6 +12,9 @@ import study.querydsl.repository.MemberRepository;
 
 import java.util.List;
 
+/**
+ * 조회 컨트롤러
+ */
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
